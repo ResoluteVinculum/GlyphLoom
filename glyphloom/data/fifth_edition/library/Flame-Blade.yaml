@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: Fire
+duration: concentration (10 minute)
+level: 2
+name: Flame Blade
+range: point (Self)
+school: None
+system: 5e

@@ -1,0 +1,10 @@
+area_of_effect: S
+damage_type:
+- Bludgeoning
+- Fire
+duration: special (Instant)
+level: 9
+name: Meteor Swarm
+range: point (1 miles)
+school: None
+system: 5e

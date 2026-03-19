@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: Fire
+duration: timed (10 minute)
+level: 0
+name: Produce Flame
+range: point (Self)
+school: None
+system: 5e

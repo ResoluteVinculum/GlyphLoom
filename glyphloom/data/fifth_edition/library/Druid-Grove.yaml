@@ -1,0 +1,10 @@
+area_of_effect:
+- C
+- Q
+damage_type: None
+duration: timed (24 hour)
+level: 6
+name: Druid Grove
+range: point (Touch)
+school: Abjuration
+system: 5e

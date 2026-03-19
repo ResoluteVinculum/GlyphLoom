@@ -1,0 +1,10 @@
+area_of_effect:
+- MT
+- ST
+damage_type: Fire
+duration: special (Instant)
+level: 0
+name: Green-Flame Blade
+range: radius (5 feet)
+school: None
+system: 5e

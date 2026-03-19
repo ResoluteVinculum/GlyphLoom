@@ -1,0 +1,8 @@
+area_of_effect: MT
+damage_type: Radiant
+duration: special (Instant)
+level: 0
+name: Word of Radiance
+range: point (5 feet)
+school: None
+system: 5e

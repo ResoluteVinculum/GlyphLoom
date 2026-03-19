@@ -1,0 +1,8 @@
+area_of_effect: None
+damage_type: None
+duration: timed (1 hour)
+level: 0
+name: Prestidigitation
+range: point (10 feet)
+school: Transmutation
+system: 5e

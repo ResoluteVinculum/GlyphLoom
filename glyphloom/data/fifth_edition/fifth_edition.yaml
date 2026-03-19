@@ -1,0 +1,113 @@
+SpellDataConfig: 
+    name: 5e
+    aliases: 
+      - fifth edition
+    game_system: Dungeons and Dragons Fifth Edition
+    attributes:
+        level:
+            order: 0
+            option_type: range
+            options: [0,21]
+            default: 0
+            glyph: true
+        school:
+            order: 1
+            option_type: list
+            options:
+              - None
+              - Abjuration
+              - Divination
+              - Enchantment
+              - Evocation
+              - Illusion
+              - Necromancy
+              - Transmutation
+            default: None
+            glyph: true
+        damage_type:
+            order: 2
+            option_type: powerset
+            options:
+              - None
+              - Acid
+              - Bludgeoning
+              - Cold
+              - Fire
+              - Force
+              - Lightning
+              - Necrotic
+              - Piercing
+              - Poison
+              - Psychic
+              - Radiant
+              - Slashing
+              - Thunder
+            default: None
+            glyph: true
+        area_of_effect:
+            order: 3
+            option_type: powerset #map
+            options: [None, C, H, L, MT, N, Q, R, S, ST, W, Y]
+                # 5e.Tools has only the area types included
+                # cone: [15, 30, 40, 60]
+                # cube: [5, 10, 15, 20, 30, 40, 100, 150, 200, 2500, 1 mile, 40000 miles]
+                # cylinder: [5, 10, 20, 40, 50, 60]
+                # line: [[30, 60, 90, 100], [5, 10]]
+                # sphere: [5, 10, 15, 20, 30, 40, 60, 100, 360]
+                # special: [Melee Target, Ranged Target, Single Target, Weapon Based]
+            default: None
+            glyph: true
+        range:
+            order: 5
+            option_type: map
+            options:
+                point: [Self, Touch, 5 feet, 10 feet, 20 feet, 30 feet, 60 feet,
+                        90 feet, 100 feet, 120 feet, 150 feet, 300 feet,
+                        300 feet, 500 feet, 1 mile, 500 miles]
+                radius: [5 feet, 10 feet, 15 feet, 30 feet, 5 miles, Unlimited]
+                sphere: [10 feet]
+                cone: [15 feet, 30 feet, 60 feet]
+                line: [20 feet, 60 feet, 100 feet]
+                hemisphere: [10 feet]
+                cube: [15 feet]
+                special: [Special]
+              # - None
+              # - 1 mile
+              # - 10 feet
+              # - 100 feet
+              # - 120 feet
+              # - 150 feet
+              # - 30 feet
+              # - 300 feet
+              # - 5 feet
+              # - 500 feet
+              # - 500 miles
+              # - 60 feet
+              # - 90 feet
+              # - Self
+              # - Sight
+              # - Special
+              # - Touch
+              # - Unlimited
+            default: None
+            glyph: true
+        duration:
+            order: 6
+            option_type: map
+            options:
+                timed: [1 round, 1 minute, 10 minute, 1 hour, 6 hour, 8 hour, 
+                        24 hour, 1 day, 7 day, 10 day, 30 day]
+                special: [Instant, Permanent, Special]
+                concentration: [1 round, 6 round, 1 minute, 10 minute,
+                                1 hour, 2 hour, 8 hour, 24 hour, 1 day]
+            default: None
+            glyph: true
+        ritual:
+            order: -1
+            option_type: list
+            options: [false, true]
+            default: false
+            glyph: false
+            
+            
+            

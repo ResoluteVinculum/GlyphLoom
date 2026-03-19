@@ -1,0 +1,8 @@
+area_of_effect: N
+damage_type: None
+duration: special (Instant)
+level: 1
+name: Color Spray
+range: cone (15 feet)
+school: Illusion
+system: 5e

@@ -1,0 +1,11 @@
+area_of_effect: MT
+damage_type:
+- Bludgeoning
+- Piercing
+- Slashing
+duration: concentration (1 minute)
+level: 5
+name: Animate Objects
+range: point (120 feet)
+school: Transmutation
+system: 5e

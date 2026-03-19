@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: Force
+duration: concentration (1 hour)
+level: 1
+name: Hunter's Mark
+range: point (90 feet)
+school: Divination
+system: 5e

@@ -1,0 +1,8 @@
+area_of_effect: Q
+damage_type: None
+duration: timed (1 minute)
+level: 1
+name: Grease
+range: point (60 feet)
+school: None
+system: 5e

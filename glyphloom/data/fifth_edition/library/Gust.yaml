@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: None
+duration: special (Instant)
+level: 0
+name: Gust
+range: point (30 feet)
+school: Transmutation
+system: 5e

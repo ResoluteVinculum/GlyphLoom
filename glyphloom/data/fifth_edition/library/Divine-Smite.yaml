@@ -1,0 +1,8 @@
+area_of_effect: None
+damage_type: Radiant
+duration: special (Instant)
+level: 1
+name: Divine Smite
+range: point (Self)
+school: None
+system: 5e

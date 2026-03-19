@@ -1,0 +1,10 @@
+area_of_effect:
+- C
+- Q
+damage_type: None
+duration: special (Instant)
+level: 0
+name: Elementalism
+range: point (30 feet)
+school: Transmutation
+system: 5e

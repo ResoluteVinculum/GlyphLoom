@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: Radiant
+duration: special (Instant)
+level: 0
+name: True Strike
+range: point (Self)
+school: Divination
+system: 5e

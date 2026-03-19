@@ -1,0 +1,8 @@
+area_of_effect: None
+damage_type: Psychic
+duration: special (Instant)
+level: 4
+name: Staggering Smite
+range: point (Self)
+school: Enchantment
+system: 5e

@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: None
+duration: special (Instant)
+level: 1
+name: Healing Word
+range: point (60 feet)
+school: Abjuration
+system: 5e

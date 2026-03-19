@@ -1,0 +1,8 @@
+area_of_effect: S
+damage_type: Thunder
+duration: special (Instant)
+level: 3
+name: Thunder Step
+range: point (90 feet)
+school: None
+system: 5e

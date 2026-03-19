@@ -1,0 +1,14 @@
+area_of_effect: ST
+damage_type:
+- Acid
+- Cold
+- Fire
+- Lightning
+- Poison
+- Thunder
+duration: special (Instant)
+level: 1
+name: Chromatic Orb
+range: point (90 feet)
+school: None
+system: 5e

@@ -1,0 +1,8 @@
+area_of_effect: R
+damage_type: Bludgeoning
+duration: concentration (1 minute)
+level: 5
+name: Maelstrom
+range: point (120 feet)
+school: None
+system: 5e

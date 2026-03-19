@@ -1,0 +1,8 @@
+area_of_effect: None
+damage_type: Necrotic
+duration: timed (1 minute)
+level: 1
+name: Wrathful Smite
+range: point (Self)
+school: None
+system: 5e

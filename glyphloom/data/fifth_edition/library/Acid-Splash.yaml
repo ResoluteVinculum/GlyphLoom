@@ -1,0 +1,8 @@
+area_of_effect: MT
+damage_type: Acid
+duration: special (Instant)
+level: 0
+name: Acid Splash
+range: point (60 feet)
+school: None
+system: 5e

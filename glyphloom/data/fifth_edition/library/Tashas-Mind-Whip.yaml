@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: Psychic
+duration: timed (1 round)
+level: 2
+name: Tasha's Mind Whip
+range: point (90 feet)
+school: Enchantment
+system: 5e

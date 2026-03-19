@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: None
+duration: concentration (1 hour)
+level: 3
+name: Gaseous Form
+range: point (Touch)
+school: Transmutation
+system: 5e

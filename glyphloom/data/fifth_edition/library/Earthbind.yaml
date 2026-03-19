@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: None
+duration: concentration (1 minute)
+level: 2
+name: Earthbind
+range: point (300 feet)
+school: Transmutation
+system: 5e

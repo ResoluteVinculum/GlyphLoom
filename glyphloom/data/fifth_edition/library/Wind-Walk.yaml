@@ -1,0 +1,8 @@
+area_of_effect: MT
+damage_type: None
+duration: timed (8 hour)
+level: 6
+name: Wind Walk
+range: point (30 feet)
+school: Transmutation
+system: 5e

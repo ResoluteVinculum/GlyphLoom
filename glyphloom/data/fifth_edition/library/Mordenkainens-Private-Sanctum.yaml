@@ -1,0 +1,8 @@
+area_of_effect: C
+damage_type: None
+duration: timed (24 hour)
+level: 4
+name: Mordenkainen's Private Sanctum
+range: point (120 feet)
+school: Abjuration
+system: 5e

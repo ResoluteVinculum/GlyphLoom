@@ -1,0 +1,16 @@
+area_of_effect: ST
+damage_type:
+- Acid
+- Cold
+- Fire
+- Force
+- Lightning
+- Poison
+- Psychic
+- Thunder
+duration: special (Instant)
+level: 1
+name: Chaos Bolt
+range: point (120 feet)
+school: None
+system: 5e

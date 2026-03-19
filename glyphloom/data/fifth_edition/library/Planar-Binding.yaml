@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: None
+duration: timed (24 hour)
+level: 5
+name: Planar Binding
+range: point (60 feet)
+school: Abjuration
+system: 5e

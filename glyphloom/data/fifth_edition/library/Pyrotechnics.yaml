@@ -1,0 +1,10 @@
+area_of_effect:
+- C
+- S
+damage_type: None
+duration: special (Instant)
+level: 2
+name: Pyrotechnics
+range: point (60 feet)
+school: Transmutation
+system: 5e

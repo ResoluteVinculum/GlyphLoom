@@ -1,0 +1,8 @@
+area_of_effect: S
+damage_type: None
+duration: timed (10 minute)
+level: 2
+name: Zone of Truth
+range: point (60 feet)
+school: Enchantment
+system: 5e

@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: None
+duration: timed (24 hour)
+level: 2
+name: Nystul's Magic Aura
+range: point (Touch)
+school: Illusion
+system: 5e

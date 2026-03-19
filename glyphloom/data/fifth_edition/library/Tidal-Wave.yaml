@@ -1,0 +1,8 @@
+area_of_effect: W
+damage_type: Bludgeoning
+duration: special (Instant)
+level: 3
+name: Tidal Wave
+range: point (120 feet)
+school: None
+system: 5e

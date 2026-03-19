@@ -1,0 +1,12 @@
+area_of_effect: None
+damage_type:
+- Lightning
+- Thunder
+- Fire
+- Cold
+duration: concentration (10 minute)
+level: 5
+name: Conjure Elemental
+range: point (60 feet)
+school: None
+system: 5e

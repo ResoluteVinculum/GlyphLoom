@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: Radiant
+duration: concentration (1 minute)
+level: 2
+name: Shining Smite
+range: point (Self)
+school: Transmutation
+system: 5e

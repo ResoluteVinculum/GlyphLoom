@@ -1,0 +1,8 @@
+area_of_effect: S
+damage_type: Thunder
+duration: special (Instant)
+level: 0
+name: Thunderclap
+range: point (5 feet)
+school: None
+system: 5e

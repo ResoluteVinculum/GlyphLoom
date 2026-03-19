@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: None
+duration: concentration (1 hour)
+level: 8
+name: Dominate Monster
+range: point (60 feet)
+school: Enchantment
+system: 5e

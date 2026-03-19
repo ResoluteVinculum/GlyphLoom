@@ -1,0 +1,15 @@
+area_of_effect:
+- N
+- ST
+damage_type:
+- Acid
+- Cold
+- Fire
+- Lightning
+- Poison
+duration: concentration (1 minute)
+level: 2
+name: Dragon's Breath
+range: point (Touch)
+school: Transmutation
+system: 5e

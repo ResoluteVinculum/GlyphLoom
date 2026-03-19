@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[project]
+name = "glyphloom"
+version = "0.0.1"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3"
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "pyyaml",
+    "rapidfuzz",
+    "requests",
+    "tqdm",
+    "typer",
+]
+
+
+#[tool.setuptools.package-data]
+#SpellWriting = ["data/**/*.yaml"]
+
+[tool.hatch.build]
+include = ["data/**/*.yaml"]
+
+[tool.hatch.build.wheel]
+packages = ["glyphloom"]
+
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+fallback-version = "0.0.1"

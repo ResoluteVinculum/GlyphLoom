@@ -1,0 +1,8 @@
+area_of_effect: S
+damage_type: Fire
+duration: concentration (1 minute)
+level: 7
+name: Delayed Blast Fireball
+range: point (150 feet)
+school: None
+system: 5e

@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: Necrotic
+duration: concentration (1 minute)
+level: 3
+name: Vampiric Touch
+range: point (Self)
+school: None
+system: 5e

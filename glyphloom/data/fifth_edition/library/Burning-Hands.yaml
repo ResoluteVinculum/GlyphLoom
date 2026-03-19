@@ -1,0 +1,8 @@
+area_of_effect: N
+damage_type: Fire
+duration: special (Instant)
+level: 1
+name: Burning Hands
+range: cone (15 feet)
+school: None
+system: 5e

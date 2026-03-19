@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: Lightning
+duration: special (Instant)
+level: 0
+name: Lightning Lure
+range: radius (15 feet)
+school: None
+system: 5e

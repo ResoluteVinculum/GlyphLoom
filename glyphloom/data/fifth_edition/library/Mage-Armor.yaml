@@ -1,0 +1,8 @@
+area_of_effect: ST
+damage_type: None
+duration: timed (8 hour)
+level: 1
+name: Mage Armor
+range: point (Touch)
+school: Abjuration
+system: 5e
