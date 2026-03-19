@@ -4,10 +4,18 @@ build-backend = "hatchling.build"
 
 [project]
 name = "glyphloom"
-version = "0.0.1"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3"
+authors = [
+    { name="Trent Oberlander", email="trentoberlander@gmail.com"}
+]
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = { file = "LICENSE" }
+keywords = ["dnd", "art"]
 dependencies = [
     "matplotlib",
     "numpy",
@@ -17,7 +25,7 @@ dependencies = [
     "tqdm",
     "typer",
 ]
-
+dynamic = ["version"]
 
 #[tool.setuptools.package-data]
 #SpellWriting = ["data/**/*.yaml"]
@@ -25,7 +33,10 @@ dependencies = [
 [tool.hatch.build]
 include = ["data/**/*.yaml"]
 
-[tool.hatch.build.wheel]
+[tool.hatch.build.targets.wheel]
+packages = ["glyphloom"]
+
+[tool.hatch.build.targets.sdist]
 packages = ["glyphloom"]
 
 
@@ -34,3 +45,6 @@ source = "uv-dynamic-versioning"
 
 [tool.uv-dynamic-versioning]
 fallback-version = "0.0.1"
+
+[project.urls]
+Homepage = "www.github.com/ResoluteVinculum/GlyphLoom"

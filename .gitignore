@@ -9,6 +9,7 @@
 dist/
 uv.lock
 .python-version
+.pypirc
 
 # Python Artifacts
 *.egg-info
