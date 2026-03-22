@@ -44,7 +44,7 @@ packages = ["glyphloom"]
 source = "uv-dynamic-versioning"
 
 [tool.uv-dynamic-versioning]
-fallback-version = "0.0.1"
+fallback-version = "0.1.0"
 
-#[project.urls]
-#Homepage = "www.github.com/ResoluteVinculum/GlyphLoom"
+[project.urls]
+Homepage = "www.github.com/ResoluteVinculum/GlyphLoom"
