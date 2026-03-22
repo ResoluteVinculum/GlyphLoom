@@ -20,7 +20,7 @@ SAFE_MATH = MappingProxyType({
                                 "exp", "log", "log10", "sqrt", "abs", "fabs",
                                 "floor", "ceil", "pi", "e", "mean", "hypot",
                                 'array', 'linalg', 'min', 'max', 'linspace',
-                                'arange', 'where']
+                                'arange', 'where', 'random']
     })
 
 class Founts:
@@ -71,6 +71,7 @@ class Founts:
                  domain_max: float = 1,
                  **kwargs):
         
+        
         self.nodes = nodes
         self.n_points = n_points
         self.expression = expression
@@ -79,10 +80,9 @@ class Founts:
         self.kwargs = kwargs
         
         if nodes is None and not expression:
-            self.nodes = type(self).polygon().nodes
-            return
-        
-        if nodes is not None:
+            self.nodes = type(self).polygon(n_points=n_points).nodes
+            return       
+        elif nodes is not None:
             self.nodes = np.array([*nodes])
             return
         
@@ -153,8 +153,10 @@ class Founts:
         Founts
 
         """
-        if start_angle is None:
+        if start_angle is None and n_points:
             start_angle = 2*np.pi/n_points
+        elif not n_points:
+            start_angle = 0
         
         # CCW Generation
         if cw:
@@ -340,9 +342,9 @@ class Leylines:
     def expression(self, expression: str | tuple[str] | typing.Callable):
         
         
-        p_search = lambda s: re.search(r'\bP\b', s)
-        q_search = lambda s: re.search(r'\bQ\b', s)
-        d_search = lambda s: re.search(r'\bdomain\b', s)
+        p_search = lambda s: re.search(r'(\W|\b)P(\W|\b)', s)
+        q_search = lambda s: re.search(r'(\W|\b)Q(\W|\b)', s)
+        d_search = lambda s: re.search(r'(\W|\b)domain(\W|\b)', s)
         if isinstance(expression, str) and expression in self.PREDEFINED:
             override = self.PREFEDEFINED_KWARGS.get(expression, {}).copy()
             for key in self.kwargs:
@@ -361,8 +363,8 @@ class Leylines:
         elif isinstance(expression, str):
             if p_search(expression) and q_search(expression):
                 self.__expression_type = 'pointwise-str' # singular expression
-            elif re.search('\bdomain\b', expression):
-                expression = (expression, '0*domain')
+            elif d_search(expression):
+                expression = ("domain", expression)
                 self.__expression_type = 'parametric-tuple'
             else:
                 raise NotImplementedError(f'\'{expression=:}\' Invalid'
