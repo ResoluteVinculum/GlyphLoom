@@ -47,4 +47,4 @@ source = "uv-dynamic-versioning"
 fallback-version = "0.1.0"
 
 [project.urls]
-Homepage = "www.github.com/ResoluteVinculum/GlyphLoom"
+homepage = "https://www.github.com/ResoluteVinculum/GlyphLoom"
