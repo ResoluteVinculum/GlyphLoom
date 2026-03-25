@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: None
-duration: timed (8 hour)
-level: 2
-name: Darkvision
-range: point (Touch)
-school: Transmutation
-system: 5e

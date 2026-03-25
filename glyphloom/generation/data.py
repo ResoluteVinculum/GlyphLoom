@@ -10,7 +10,6 @@ import sys
 from itertools import product, combinations, chain
 
 import yaml
-import numpy as np
 
 def powerset(iterable: typing.Iterable, max_r: int = 3) -> list:
     """
@@ -40,7 +39,6 @@ class SpellAttribute:
             self.default = options[0] if default is None else default
         self.glyph = glyph
         self.name = None
-        self.value = None
             
     def __set_name__(self, owner, name):
         self.name = name
@@ -61,7 +59,7 @@ class SpellAttribute:
                 f'glyph={self.glyph})')
     
     def __str__(self) -> str:
-        return f'<{self.name}-SpellAttribute = {self.value}>'
+        return f'<{self.name}-SpellAttribute: default={self.default}>'
     
 
 class SpellData:
@@ -140,14 +138,20 @@ class SpellData:
                             lambda t: f'{key} ({str(t)})',
                             value)))
                 options = option_list
-            elif option_type == 'powerset':
-                power_set = powerset(options)
+            elif 'powerset' in option_type:
+                try:
+                    r = int(option_type.split('-')[-1])
+                except (TypeError, IndexError):
+                    r = 3
+                power_set = powerset(options, r)
                 if 'None' in options:
                     options = ['None', *[opt[0] if len(opt) == 1 else opt 
                                          for opt in power_set
                                          if 'None' not in opt and opt]]
                 else:
-                    options = power_set
+                    options = [*[opt[0] if len(opt) == 1 else opt 
+                                         for opt in power_set
+                                         if 'None' not in opt and opt]]
                 
                 
             default = attr_data['default']
@@ -161,9 +165,16 @@ class SpellData:
         return target
     
     @classmethod
-    def yaml_spell(cls, yaml_file:str) -> typing.Self:
-        with open(yaml_file, 'r') as fid:
-            data = yaml.safe_load(fid)
+    def yaml_spell(cls, yaml_file:str|typing.IO[str]) -> typing.Self:
+        if isinstance(yaml_file, str):
+            with open(yaml_file, 'r') as fid:
+                data = yaml.safe_load(fid)
+        else:
+            data = yaml.safe_load(yaml_file)
+        
+        for key, value in data.items():
+            if value == 'None':
+                data[key] = None
         if data['system'] != cls.system:
             return None
         return cls(**data)

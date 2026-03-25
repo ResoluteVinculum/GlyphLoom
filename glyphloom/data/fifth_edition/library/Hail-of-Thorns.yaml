@@ -1,8 +1,0 @@
-area_of_effect: S
-damage_type: Piercing
-duration: special (Instant)
-level: 1
-name: Hail of Thorns
-range: point (Self)
-school: None
-system: 5e

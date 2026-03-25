@@ -1,8 +1,0 @@
-area_of_effect: MT
-damage_type: None
-duration: timed (1 minute)
-level: 1
-name: Feather Fall
-range: point (60 feet)
-school: Transmutation
-system: 5e

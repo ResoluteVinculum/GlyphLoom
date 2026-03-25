@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: Lightning
-duration: special (Instant)
-level: 0
-name: Shocking Grasp
-range: point (Touch)
-school: None
-system: 5e

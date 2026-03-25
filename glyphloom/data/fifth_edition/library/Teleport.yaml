@@ -1,8 +1,0 @@
-area_of_effect: MT
-damage_type: Force
-duration: special (Instant)
-level: 7
-name: Teleport
-range: point (10 feet)
-school: None
-system: 5e

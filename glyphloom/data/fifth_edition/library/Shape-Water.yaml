@@ -1,8 +1,0 @@
-area_of_effect: C
-damage_type: None
-duration: timed (1 hour)
-level: 0
-name: Shape Water
-range: point (30 feet)
-school: Transmutation
-system: 5e

@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: Cold
-duration: special (Instant)
-level: 0
-name: Ray of Frost
-range: point (60 feet)
-school: None
-system: 5e

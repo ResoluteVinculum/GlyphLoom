@@ -1,8 +1,0 @@
-area_of_effect: C
-damage_type: None
-duration: special (Instant)
-level: 1
-name: Create or Destroy Water
-range: point (30 feet)
-school: Transmutation
-system: 5e

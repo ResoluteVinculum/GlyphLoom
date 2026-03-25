@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: None
-duration: special (Instant)
-level: 8
-name: Power Word Stun
-range: point (60 feet)
-school: Enchantment
-system: 5e

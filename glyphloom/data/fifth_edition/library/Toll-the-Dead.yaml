@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: Necrotic
-duration: special (Instant)
-level: 0
-name: Toll the Dead
-range: point (60 feet)
-school: None
-system: 5e

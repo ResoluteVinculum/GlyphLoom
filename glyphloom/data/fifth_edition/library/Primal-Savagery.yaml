@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: Acid
-duration: special (Instant)
-level: 0
-name: Primal Savagery
-range: point (Self)
-school: Transmutation
-system: 5e

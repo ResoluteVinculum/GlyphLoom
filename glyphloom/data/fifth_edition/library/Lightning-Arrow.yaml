@@ -1,8 +1,0 @@
-area_of_effect: S
-damage_type: Lightning
-duration: special (Instant)
-level: 3
-name: Lightning Arrow
-range: point (Self)
-school: Transmutation
-system: 5e

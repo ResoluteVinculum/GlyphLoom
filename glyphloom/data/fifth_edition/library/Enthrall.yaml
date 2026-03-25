@@ -1,8 +1,0 @@
-area_of_effect: MT
-damage_type: None
-duration: timed (1 minute)
-level: 2
-name: Enthrall
-range: point (60 feet)
-school: Enchantment
-system: 5e

@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: Bludgeoning
-duration: special (Instant)
-level: 1
-name: Catapult
-range: point (60 feet)
-school: Transmutation
-system: 5e

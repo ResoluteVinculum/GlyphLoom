@@ -1,8 +1,0 @@
-area_of_effect: MT
-damage_type: None
-duration: special (Instant)
-level: 2
-name: Prayer of Healing
-range: point (30 feet)
-school: Abjuration
-system: 5e

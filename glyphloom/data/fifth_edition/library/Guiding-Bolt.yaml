@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: Radiant
-duration: timed (1 round)
-level: 1
-name: Guiding Bolt
-range: point (120 feet)
-school: None
-system: 5e

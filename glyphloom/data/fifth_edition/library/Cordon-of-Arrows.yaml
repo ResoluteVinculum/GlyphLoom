@@ -1,8 +1,0 @@
-area_of_effect: S
-damage_type: Piercing
-duration: timed (8 hour)
-level: 2
-name: Cordon of Arrows
-range: point (Touch)
-school: Transmutation
-system: 5e

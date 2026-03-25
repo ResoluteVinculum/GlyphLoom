@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: None
-duration: timed (8 hour)
-level: 9
-name: Foresight
-range: point (Touch)
-school: Divination
-system: 5e

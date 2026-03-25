@@ -1,8 +1,0 @@
-area_of_effect: C
-damage_type: None
-duration: timed (1 hour)
-level: 0
-name: Control Flames
-range: point (60 feet)
-school: Transmutation
-system: 5e

@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: None
-duration: special (Instant)
-level: 1
-name: Identify
-range: point (Touch)
-school: Divination
-system: 5e

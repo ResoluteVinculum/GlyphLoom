@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: None
-duration: special (Instant)
-level: 1
-name: Cure Wounds
-range: point (Touch)
-school: Abjuration
-system: 5e

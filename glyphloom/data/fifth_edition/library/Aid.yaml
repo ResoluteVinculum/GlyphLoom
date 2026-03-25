@@ -1,8 +1,0 @@
-area_of_effect: MT
-damage_type: None
-duration: timed (8 hour)
-level: 2
-name: Aid
-range: point (30 feet)
-school: Abjuration
-system: 5e

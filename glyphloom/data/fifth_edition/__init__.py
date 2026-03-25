@@ -7,90 +7,118 @@ Created on Wed Mar 18 20:26:26 2026
 
 #
 from pathlib import Path
-from typing import Literal
+import warnings
+from threading import Thread
+import zipfile
+import typing
+from types import MappingProxyType
 
-import yaml
 import requests
 from rapidfuzz import process
 
 from glyphloom.generation import SpellData
 
+#%% 5e.Tools Mirror
+try:
+    URL = r'https://raw.githubusercontent.com/5etools-mirror-3/5etools-src/main/data/spells'
+    SPELLS_BY_SOURCE = {}
+    SOURCE_BY_SPELL = {}
+    SOURCES = requests.get(f"{URL}/index.json").json()
+    def get_spell_map(source:str, file:str) -> None:
+        file = f'{URL}/{file}'
+        data = requests.get(file).json()
+        spell_names = [spell['name'] for spell in data['spell']]
+        SPELLS_BY_SOURCE[source] = tuple(spell_names)
+        return
+    threads = []
+    for source, file in SOURCES.items():
+        thread = Thread(target=get_spell_map, args=(source,file))
+        thread.start()
+        threads.append(thread)
+    for thread in threads:
+        thread.join()
+    
+    
+    SOURCE_BY_SPELL = {spell: 'XPHB' for spell in SPELLS_BY_SOURCE['XPHB']}
+    for source, spells in reversed(SPELLS_BY_SOURCE.items()):
+        if source == 'PHB':
+            continue
+        for spell in spells:
+            if spell in set(SOURCE_BY_SPELL):
+                continue
+            SOURCE_BY_SPELL[spell] = source
+    del threads, thread, source, file, spell, spells
+except Exception as e:
+    print(f"{type(e)}: {e}")
+    warnings.warn("No access to the 5e.tools Mirror Repo!")
+    SOURCES = None
+    
 
+
+#%% Data
+FIVE_E = Path(__file__).absolute().parent
 SpellData_5e = SpellData.from_yaml(
-    (Path(__file__).parent / 'fifth_edition.yaml'))
+    (FIVE_E / 'fifth_edition.yaml'))
 
-Offline_Library = {file.stem: SpellData_5e.yaml_spell(file)
-           for file in (Path(__file__).parent / 'library').glob('*.yaml')}
+OFFLINE_LIBRARY = {}
+def get_offline_map(file:typing.IO[str]) -> None:
+    data = SpellData_5e.yaml_spell(file)
+    OFFLINE_LIBRARY[data.name] = data
+    return
+threads = []
+with zipfile.ZipFile(FIVE_E / "library.zip") as zf:
+    for file_info in zf.filelist:
+        t = Thread(target=get_offline_map, args=(zf.open(file_info),))
+        t.start()
+        threads.append(t)
+    for t in threads:
+        t.join()
+del zf, t, threads
 
+#%% Monkey Type
 
-with open((Path(__file__).parent / '5eTools_Index.yaml'), 'r') as fid:
-    _5eTools_Index = yaml.safe_load(fid)
-del fid
-_5eTools_Spell_to_Json = {}
-for key, value in _5eTools_Index.items():
-    for name in value:
-        if name in _5eTools_Spell_to_Json:
-            continue # Err on the side of PHB
-        _5eTools_Spell_to_Json[name] = key
-del key, value, name
-_BookMap = {Path(json).stem.split('-')[-1]: json for json in _5eTools_Index}
-
-
-_5eCache = {}
-
-@classmethod
-def get_spell(cls, spell_name: Literal[*_5eTools_Spell_to_Json],
-                  source: Literal[*_BookMap] = None) -> SpellData_5e:
+AOE_MAP = MappingProxyType({
+        "C" : "Cube",
+        "E" : "Emanation",
+        "H" : "Hemisphere",
+        "L" : "Line",
+        "MT" : "Multiple Targets",
+        "N" : "Cone",
+        "Q" : "Square",
+        "R" : "Circle",
+        "S" : "Sphere",
+        "ST" : "Single Target",
+        "W" : "Wall",
+        "Y" : "Cylinder"
+    })
+def _get_spell_json_online(spell_name:str, source:str = None) -> SpellData_5e:
     """
-    Retrieves a spell from 5eTools using 5.5e PHB, Tasha's, and Xanathar's.
-    Spells err on the side of the player's handbook, so if you want the spell
-    from a different book, use the source argument with 'xge', 'tce', or the
-    last part of the "spells-*.json" data file name from 5e.toosl.data/spells.
+    Utilizes the 5etools-mirror-3 repo to load in a spell to the SpellData_5e 
+    type
 
     Parameters
     ----------
     spell_name : str
-        Name exactly as it appears on 5eTools.
-    source: str
-        Override command to grab a different book's spells, literal "offline"
-        will use the preloaded spells in the library
+        Spell name as it appears in the compendium.
 
     Returns
     -------
     SpellData_5e
-        Spell Data for the retrieved spell.
 
     """
-    
-    if source == 'offline':
-        choices = list(Offline_Library)
-        spell_name = process.extractOne(spell_name, choices)[0]
-        return Offline_Library[spell_name]
-    elif source == 'online' or source is None:
-        choices = list(_5eTools_Spell_to_Json)
-        spell_name = process.extractOne(spell_name, choices)[0]
-        source = _5eTools_Spell_to_Json[spell_name]
-
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0"
-        ),
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Sec-Fetch-Site": "none",
-        "Sec-Fetch-Mode": "navigate",
-        "Sec-Fetch-Dest": "document"
-    }
-    if source not in _5eCache:
-        r = requests.get(source, headers=headers).json()
-        _5eCache[source] = r
+    lower, conf, idx = process.extractOne(spell_name.lower(),
+                                          map(str.lower, SOURCE_BY_SPELL))
+    spell_name = tuple(SOURCE_BY_SPELL)[idx]
+    if source is None:
+        file = SOURCES[SOURCE_BY_SPELL[spell_name]]
     else:
-        r = _5eCache[source]
-    spell = max(r['spell'], key=lambda d: d['name'] == spell_name)
+        file = SOURCES[source]
+    url = f'{URL}/{file}'
+    data = requests.get(url).json()
     
-    name = spell['name']
+    spell = max(data['spell'],
+                key=lambda sp: sp['name'] == spell_name)
+    
     level = spell['level']
     school = max(SpellData_5e.school.options,
                  key=lambda s : s[0] == spell['school'])
@@ -104,6 +132,8 @@ def get_spell(cls, spell_name: Literal[*_5eTools_Spell_to_Json],
         damage_type = 'None'
     
     aoe_shape = spell.get('areaTags', [])
+    aoe_shape = list(map(lambda s : AOE_MAP[s],
+                         aoe_shape))
     if len(aoe_shape) == 1:
         aoe_shape = aoe_shape[0]
     elif len(aoe_shape) > 1:
@@ -146,19 +176,70 @@ def get_spell(cls, spell_name: Literal[*_5eTools_Spell_to_Json],
     else:
         duration = f'special ({duration["type"].capitalize()})'
     
-    spell_data = {'name' : name,
+    #Ritual
+    meta = spell.get('meta', {})
+    ritual = False
+    if 'ritual' in meta:
+        ritual = meta['ritual']
+    
+    spell_data = {'name' : spell_name,
                   'system': '5e',
                   'level' : level,
                   'school' : school,
                   'damage_type' : damage_type,
                   'area_of_effect' : aoe_shape,
                   'range' : rg,
-                  'duration' : duration}
+                  'duration' : duration,
+                  'ritual' : ritual}
     for key, value in spell_data.items():
         if value is None:
             spell_data[key] = 'None'
     
-    return cls(**spell_data)
+    return spell_data
+    
+    
 
+
+__SPELL_CACHE = {}
+
+@classmethod
+def get_spell(cls, 
+              spell_name: str,
+              source: str = 'offline') -> SpellData_5e:
+    """
+    Retrieves a spell from 5eTools using 5.5e PHB, Tasha's, and Xanathar's.
+    Spells err on the side of the player's handbook, so if you want the spell
+    from a different book, use the source argument with 'xge', 'tce', or the
+    last part of the "spells-*.json" data file name from 5e.toosl.data/spells.
+
+    Parameters
+    ----------
+    spell_name : str
+        Name exactly as it appears on 5eTools.
+    source: str
+        Override command to grab a different book's spells, literal "offline"
+        will use the preloaded spells in the library
+
+    Returns
+    -------
+    SpellData_5e
+        Spell Data for the retrieved spell.
+
+    """
+    
+    if source == 'offline':
+        choices = list(OFFLINE_LIBRARY)
+        lower, conf, idx = process.extractOne(spell_name.lower(), map(str.lower,choices))
+        return tuple(OFFLINE_LIBRARY.values())[idx]
+    
+    
+    if source == 'online' or source is None:
+        spell_data_dict = _get_spell_json_online(spell_name)
+    elif source:
+        spell_data_dict = _get_spell_json_online(spell_name, source)
+    
+    spell = cls(**spell_data_dict)
+    
+    return spell
 setattr(SpellData_5e, 'get_spell', get_spell)
 

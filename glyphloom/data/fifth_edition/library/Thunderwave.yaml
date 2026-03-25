@@ -1,8 +1,0 @@
-area_of_effect: C
-damage_type: Thunder
-duration: special (Instant)
-level: 1
-name: Thunderwave
-range: cube (15 feet)
-school: None
-system: 5e

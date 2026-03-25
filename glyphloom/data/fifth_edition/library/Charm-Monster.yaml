@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: None
-duration: timed (1 hour)
-level: 4
-name: Charm Monster
-range: point (30 feet)
-school: Enchantment
-system: 5e

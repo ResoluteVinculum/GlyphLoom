@@ -1,8 +1,0 @@
-area_of_effect: C
-damage_type: Bludgeoning
-duration: special (Instant)
-level: 3
-name: Erupting Earth
-range: point (120 feet)
-school: Transmutation
-system: 5e

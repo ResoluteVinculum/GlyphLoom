@@ -1,8 +1,0 @@
-area_of_effect: MT
-damage_type: None
-duration: timed (10 minute)
-level: 3
-name: Catnap
-range: point (30 feet)
-school: Enchantment
-system: 5e

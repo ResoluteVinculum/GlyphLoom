@@ -1,8 +1,0 @@
-area_of_effect: Q
-damage_type: None
-duration: timed (24 hour)
-level: 6
-name: Guards and Wards
-range: point (Touch)
-school: Abjuration
-system: 5e

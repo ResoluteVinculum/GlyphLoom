@@ -27,11 +27,12 @@ dependencies = [
 ]
 dynamic = ["version"]
 
-#[tool.setuptools.package-data]
-#SpellWriting = ["data/**/*.yaml"]
-
 [tool.hatch.build]
-include = ["data/**/*.yaml"]
+include = [
+    "data/**/*.yaml",
+    "data/**/*.zip"
+]
+
 
 [tool.hatch.build.targets.wheel]
 packages = ["glyphloom"]
@@ -48,3 +49,7 @@ fallback-version = "0.1.0"
 
 [project.urls]
 homepage = "https://www.github.com/ResoluteVinculum/GlyphLoom"
+issues = "https://www.github.com/ResoluteVinculum/GlyphLoom/issues"
+
+[project.scripts]
+glyphloom = "glyphloom.cli.main:app"

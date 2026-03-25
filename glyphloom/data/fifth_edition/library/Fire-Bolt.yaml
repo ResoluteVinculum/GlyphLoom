@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: Fire
-duration: special (Instant)
-level: 0
-name: Fire Bolt
-range: point (120 feet)
-school: None
-system: 5e

@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: None
-duration: timed (24 hour)
-level: 2
-name: Animal Messenger
-range: point (30 feet)
-school: Enchantment
-system: 5e

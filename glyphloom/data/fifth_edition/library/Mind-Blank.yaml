@@ -1,8 +1,0 @@
-area_of_effect: ST
-damage_type: None
-duration: timed (24 hour)
-level: 8
-name: Mind Blank
-range: point (Touch)
-school: Abjuration
-system: 5e

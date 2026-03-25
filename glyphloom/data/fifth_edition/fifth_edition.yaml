@@ -3,6 +3,8 @@ SpellDataConfig:
     aliases: 
       - fifth edition
     game_system: Dungeons and Dragons Fifth Edition
+    notes: 
+      - Dyad of 5e.Tools canonical description "https://github.com/TheGiddyLimit/5etools-utils" and Gorilla of Destiny SpellWriting
     attributes:
         level:
             order: 0
@@ -14,8 +16,8 @@ SpellDataConfig:
             order: 1
             option_type: list
             options:
-              - None
               - Abjuration
+              - Conjuration
               - Divination
               - Enchantment
               - Evocation
@@ -26,9 +28,8 @@ SpellDataConfig:
             glyph: true
         damage_type:
             order: 2
-            option_type: powerset
+            option_type: powerset-3
             options:
-              - None
               - Acid
               - Bludgeoning
               - Cold
@@ -46,8 +47,20 @@ SpellDataConfig:
             glyph: true
         area_of_effect:
             order: 3
-            option_type: powerset #map
-            options: [None, C, H, L, MT, N, Q, R, S, ST, W, Y]
+            option_type: powerset-2 #map
+            options: #[C, E, H, L, MT, N, Q, R, S, ST, W, Y]
+              - Cube
+              - Emanation
+              - Hemisphere
+              - Line
+              - Multiple Targets
+              - Cone
+              - Square
+              - Circle
+              - Sphere
+              - Single Target
+              - Wall
+              - Cylinder
                 # 5e.Tools has only the area types included
                 # cone: [15, 30, 40, 60]
                 # cube: [5, 10, 15, 20, 30, 40, 100, 150, 200, 2500, 1 mile, 40000 miles]
@@ -61,16 +74,16 @@ SpellDataConfig:
             order: 5
             option_type: map
             options:
+                cone: [15 feet, 30 feet, 60 feet]
+                cube: [15 feet]
+                hemisphere: [10 feet]
+                line: [20 feet, 60 feet, 100 feet]
                 point: [Self, Touch, 5 feet, 10 feet, 20 feet, 30 feet, 60 feet,
                         90 feet, 100 feet, 120 feet, 150 feet, 300 feet,
                         300 feet, 500 feet, 1 mile, 500 miles]
                 radius: [5 feet, 10 feet, 15 feet, 30 feet, 5 miles, Unlimited]
-                sphere: [10 feet]
-                cone: [15 feet, 30 feet, 60 feet]
-                line: [20 feet, 60 feet, 100 feet]
-                hemisphere: [10 feet]
-                cube: [15 feet]
                 special: [Special]
+                sphere: [10 feet]
               # - None
               # - 1 mile
               # - 10 feet
