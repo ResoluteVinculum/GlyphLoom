@@ -160,6 +160,10 @@ class SpellData:
             setattr(attr, 'name', attribute)
             class_map[attribute] = attr
         
+        for key, value in class_map.items():
+            if isinstance(value, typing.Iterable) and not isinstance(value, str):
+                class_map[key] = tuple(value)
+        
         target = type(class_name, (SpellData,), class_map)
         
         return target

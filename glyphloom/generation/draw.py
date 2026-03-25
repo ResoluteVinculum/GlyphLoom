@@ -51,6 +51,8 @@ class Glyph:
         non_glyph = 0
         for attr in attrs:
             value = getattr(self.spelldata, attr.name)
+            if isinstance(value, typing.Iterable) and not isinstance(value, str):
+                value = tuple(value)
             if not attr.glyph:
                 if value and non_glyph:
                     kwargs = dict(fillstyle='none', 
@@ -90,7 +92,7 @@ class Glyph:
 if __name__ == '__main__':
     from glyphloom.data.fifth_edition import SpellData_5e
     
-    spelldata = SpellData_5e.get_spell('Wish', 
+    spelldata = SpellData_5e.get_spell('Flame Strike5', 
                                        'offline')
     leylines = geometry.Leylines(
         founts=geometry.Founts(
