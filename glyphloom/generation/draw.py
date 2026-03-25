@@ -43,7 +43,7 @@ class Glyph:
         
         if not self.leylines.founts.n_points:
             fig.show()
-            return fig
+            return fig, ax
         
         attrs = self.spelldata.collect_attributes().values()
         cmap = plt.get_cmap('cubehelix')
@@ -53,11 +53,13 @@ class Glyph:
             value = getattr(self.spelldata, attr.name)
             if not attr.glyph:
                 if value and non_glyph:
-                    kwargs = dict(fillstyle='none', markersize=20+10*non_glyph)
-                    plt.plot(0,0, 'ok', **kwargs)
+                    kwargs = dict(fillstyle='none', 
+                                  markersize=20+10*non_glyph,
+                                  color='#991B1E')
+                    plt.plot(0,0, 'o', **kwargs)
                 elif value:
-                    kwargs = dict(markersize=15)
-                    plt.plot(0,0, 'ok', **kwargs)
+                    kwargs = dict(markersize=15, color='#991B1E')
+                    plt.plot(0,0, 'o', **kwargs)
                 
                 non_glyph+=1
                 continue
@@ -83,7 +85,7 @@ class Glyph:
 
         plt.axis('off')
         
-        return fig
+        return fig, ax
             
 if __name__ == '__main__':
     from glyphloom.data.fifth_edition import SpellData_5e

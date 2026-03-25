@@ -331,7 +331,7 @@ class Leylines:
         self.resolution = resolution
         self.kwargs = kwargs
         self.expression = expression
-        self.necklace = generate_necklace(n)
+        self.necklace = generate_necklace(n)[1:]
     
     
     @property

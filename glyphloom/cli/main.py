@@ -9,6 +9,6 @@ import typer
 
 app = typer.Typer(no_args_is_help=True)
 
-from glyphloom.cli.commands import (draw)
+from glyphloom.cli.commands import (fe)
 
-app.add_typer(draw.app, name='draw')
+app.add_typer(fe.app, name='5e')
