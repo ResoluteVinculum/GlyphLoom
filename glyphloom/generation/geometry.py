@@ -89,7 +89,7 @@ class Founts:
         if isinstance(expression, str) and expression not in self.PREDEFINED:
             # Simple Function
             domain = np.linspace(domain_min, domain_max, n_points)
-            env = {'__builtins__': {}, 
+            env = {'__builtins__': None, 
                    **SAFE_MATH, 
                    'domain': domain}
             ys = eval(expression, env)
@@ -388,7 +388,7 @@ class Leylines:
             samples = self.resolution
         domain = np.linspace(self.domain_min, self.domain_max, samples)
         # Parametric function
-        env = {'__builtins__': {}, 
+        env = {'__builtins__': None, 
                **SAFE_MATH, 
                'domain': domain, 
                **self.__dict__,
