@@ -6,9 +6,11 @@ Created on Sun Mar 15 14:23:40 2026
 """
 import typing
 
-if __name__ != "__main__":
-    import matplotlib
-    matplotlib.use("TkAgg")
+import matplotlib
+try:
+    matplotlib.use('TkAgg')
+except:
+    pass
 import matplotlib.pyplot as plt
 plt.rcParams.update({
     "figure.facecolor":  (0.0, 0.0, 0.0, 0.0),
