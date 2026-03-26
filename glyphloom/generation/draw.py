@@ -76,14 +76,15 @@ class Glyph:
                 if i:
                     plt.plot(*path, color=colors[order])
                 else:
-                    plt.plot(*path, color=colors[order], label=attr.name)
+                    plt.plot(*path, color=colors[order], label=f'{attr.name: <15}- {value}')
         plt.plot(*self.leylines.founts[:,1:], 'ok', fillstyle='full', markersize=8)
         plt.plot(*self.leylines.founts[:,0], 'ok', fillstyle='none', markersize=8)
         if legend and legend_kwargs:
             plt.legend(**legend_kwargs)
         elif legend:
-            ax.legend(loc='upper left',
-                      bbox_to_anchor=(1.02, 0.8))
+            ax.legend(loc='lower center',
+                      bbox_to_anchor=(0.5, -0.4),
+                      prop={'family':'monospace'})
 
         plt.axis('off')
         

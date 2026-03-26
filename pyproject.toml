@@ -22,7 +22,6 @@ dependencies = [
     "pyyaml",
     "rapidfuzz",
     "requests",
-    "tqdm",
     "typer",
 ]
 dynamic = ["version"]

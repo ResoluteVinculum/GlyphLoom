@@ -9,7 +9,7 @@ SpellDataConfig:
         level:
             order: 0
             option_type: range
-            options: [0,21]
+            options: [0,631]
             default: 0
             glyph: true
         school:
@@ -74,16 +74,17 @@ SpellDataConfig:
             order: 5
             option_type: map
             options:
-                cone: [15 feet, 30 feet, 60 feet]
-                cube: [15 feet]
-                hemisphere: [10 feet]
-                line: [20 feet, 60 feet, 100 feet]
+                special: [Special]
                 point: [Self, Touch, 5 feet, 10 feet, 20 feet, 30 feet, 60 feet,
                         90 feet, 100 feet, 120 feet, 150 feet, 300 feet,
                         300 feet, 500 feet, 1 mile, 500 miles]
+                line: [20 feet, 30 feet, 60 feet, 100 feet, 120 feet]
+                cube: [10 feet, 15 feet]
+                cone: [15 feet, 30 feet, 60 feet]
+                emanation: [5 feet, 10 feet, 15 feet, 20 feet, 30 feet, 60 feet]
                 radius: [5 feet, 10 feet, 15 feet, 30 feet, 5 miles, Unlimited]
-                special: [Special]
-                sphere: [10 feet]
+                sphere: [10 feet, 30 feet, 5 miles]
+                hemisphere: [10 feet]
               # - None
               # - 1 mile
               # - 10 feet
