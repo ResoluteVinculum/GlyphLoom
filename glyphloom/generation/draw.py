@@ -26,7 +26,7 @@ class Glyph:
     
     def __init__(self,
                  spelldata: data.SpellData = None,
-                 leylines: geometry.Leylines = None) -> typing.Self:
+                 leylines: geometry.Leylines = None):
     
         self.spelldata = spelldata
         if leylines:
@@ -36,16 +36,27 @@ class Glyph:
                 geometry.Founts(n=len(spelldata.collect_attributes())))
         
     
-    def draw(self, legend: bool = False, legend_kwargs: dict = {}):
+    def draw(self, 
+             title: bool = True, 
+             title_kwargs: dict = {}, 
+             legend: bool = False, 
+             legend_kwargs: dict = {}, 
+             ax:plt.Axes = None) -> None:
         # TODO: Add thematic colors
-        fig = plt.figure(constrained_layout=True)
-        ax = fig.add_subplot(111)
+        if not ax:
+            fig = plt.figure(constrained_layout=True)
+            ax = fig.add_subplot(111)
+        elif ax:
+            fig = plt.gcf()
         ax.set_aspect('equal', adjustable='box')
-        plt.title(self.spelldata.name)
+        
+        if title and not title_kwargs:
+            ax.set_title(self.spelldata.name, fontdict=dict(family='Consolas'))
+        elif title:
+            ax.set_title(self.spelldata.name, **title_kwargs)
         
         if not self.leylines.founts.n_points:
-            fig.show()
-            return fig, ax
+            return fig
         
         attrs = self.spelldata.collect_attributes().values()
         cmap = plt.get_cmap('cubehelix')
@@ -60,10 +71,10 @@ class Glyph:
                     kwargs = dict(fillstyle='none', 
                                   markersize=20+10*non_glyph,
                                   color='#991B1E')
-                    plt.plot(0,0, 'o', **kwargs)
+                    ax.plot(0,0, 'o', **kwargs)
                 elif value:
                     kwargs = dict(markersize=15, color='#991B1E')
-                    plt.plot(0,0, 'o', **kwargs)
+                    ax.plot(0,0, 'o', **kwargs)
                 
                 non_glyph+=1
                 continue
@@ -76,30 +87,70 @@ class Glyph:
             paths = self.leylines.default_curves[order, binary.astype(bool)]
             for i, path in enumerate(paths):
                 if i:
-                    plt.plot(*path, color=colors[order])
+                    ax.plot(*path, color=colors[order])
                 else:
-                    plt.plot(*path, color=colors[order], label=f'{attr.name: <15}- {value}')
-        plt.plot(*self.leylines.founts[:,1:], 'ok', fillstyle='full', markersize=8)
-        plt.plot(*self.leylines.founts[:,0], 'ok', fillstyle='none', markersize=8)
+                    ax.plot(*path, color=colors[order], label=f'{attr.name: <15}- {value}')
+        ax.plot(*self.leylines.founts[:,1:], 'ok', fillstyle='full', markersize=6)
+        ax.plot(*self.leylines.founts[:,0], 'ok', fillstyle='none', markersize=6)
         if legend and legend_kwargs:
-            plt.legend(**legend_kwargs)
+            ax.legend(**legend_kwargs)
         elif legend:
             ax.legend(loc='lower center',
                       bbox_to_anchor=(0.5, -0.4),
                       prop={'family':'monospace'})
 
-        plt.axis('off')
+        ax.axis('off')
         
-        return fig, ax
-            
-if __name__ == '__main__':
-    from glyphloom.data.fifth_edition import SpellData_5e
+        return fig
     
-    spelldata = SpellData_5e.get_spell('Flame Strike5', 
-                                       'offline')
-    leylines = geometry.Leylines(
-        founts=geometry.Founts(
-            n_points=13,
-            expression=None),
-        expression='linear')
-    Glyph(spelldata, leylines).draw(legend=True)
+    
+    @staticmethod
+    def character_series(series:str,
+                         options:typing.Iterable[str] = list("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoqprstuvwxyz.!?,;:\"'"),
+                         leyline_expression:str|tuple[str] = 'non-centre-circle',
+                         title:bool = True) -> None:
+        figure, axes = plt.subplots(nrows=1,ncols=len(series.split()),
+                                    figsize=(max(1.5*len(series.split()),5), 2))
+        if title:
+            figure.suptitle(series, fontdict=dict(family='Consolas'))
+        if not isinstance(axes, typing.Iterable):
+            axes = [axes]
+        for i, word in enumerate(series.split()):
+            # l_word = word.lower()
+            l = len(word)
+            Data = type(f"Word_{l}", (data.SpellData,), 
+                        {f'letter{j}' : data.SpellAttribute(
+                            j, 
+                            options, 
+                            default=None)
+                        for j in range(l)})
+            spelldata = Data(word, *word)
+            
+            points = l
+            while True:
+                try:
+                    Glyph(spelldata, 
+                          geometry.Leylines(
+                              founts=geometry.Founts(n_points=points*2+1),
+                              expression=leyline_expression
+                              )
+                          ).draw(title=False, ax=axes[i], legend=False)
+                    break
+                except IndexError:
+                    points += 1
+                    
+        return figure
+                    
+if __name__ == '__main__':
+    # from glyphloom.data.fifth_edition import SpellData_5e
+    
+    # spelldata = SpellData_5e.get_spell('Magic Stone', 
+    #                                    'offline')
+    # leylines = geometry.Leylines(
+    #     founts=geometry.Founts(
+    #         n_points=13,
+    #         expression=None),
+    #     expression='linear')
+    # Glyph(spelldata, leylines).draw(title=False,legend=False)
+    
+    Glyph.character_series("The quick brown fox jumped over the lazy dog")

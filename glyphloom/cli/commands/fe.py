@@ -16,7 +16,7 @@ from glyphloom.generation.draw import Glyph
 
 
 def wait_for_input(flag):
-    input("Press any key to continue...")
+    input("Press Enter to continue...")
     flag['done'] = True
 
 
@@ -92,8 +92,8 @@ def draw(spell: str = typer.Argument(None),
                         domain_min=leyline_min,
                         domain_max=leyline_max,
                         resolution=leyline_resolution)
-    fig, ax = Glyph(data,
-                    leylines).draw(legend=show_legend)
+    fig = Glyph(data,
+                leylines).draw(legend=show_legend)
     if save_file is not None:
         plt.savefig(save_file, transparent=True, dpi='figure')
     plt.show()

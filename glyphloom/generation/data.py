@@ -87,6 +87,8 @@ class SpellData:
             if default is ...:
                 params.append(f'{name}:{tp}')
             else:
+                if isinstance(default, str):
+                    default = repr(default)
                 params.append(f'{name}:{tp} = {default}')
             body_data.append(f'self.{name} = {name}')
             
