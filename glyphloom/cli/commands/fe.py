@@ -11,8 +11,8 @@ import typer
 import matplotlib.pyplot as plt
 
 from glyphloom.data.fifth_edition import SpellData_5e
-from glyphloom.generation.geometry import Founts, Leylines, SAFE_MATH
-from glyphloom.generation.draw import Glyph
+# from glyphloom.generation.geometry import Founts, Leylines, SAFE_MATH
+# from glyphloom.generation.draw import Glyph
 
 
 def wait_for_input(flag):
@@ -49,6 +49,9 @@ def draw(spell: str = typer.Argument(None),
          save_file: str = typer.Option(None, "--save-file",
                                        help="Relative or Absolute filepath for png output.")
          ) -> None:
+    
+    from glyphloom.generation.geometry import Founts, Leylines, SAFE_MATH
+    from glyphloom.generation.draw import Glyph
 
     done = {"done": False}
     t = Thread(target=wait_for_input, args=(done,), daemon=True)
@@ -147,7 +150,8 @@ def custom(spell_name:str = typer.Argument(""),
                                          help="Relative or Absolute filepath for png output.")
            ) -> None:
     
-    
+    from glyphloom.generation.geometry import Founts, Leylines, SAFE_MATH
+    from glyphloom.generation.draw import Glyph
     
     done = {"done": False}
     t = Thread(target=wait_for_input, args=(done,), daemon=True)
@@ -198,7 +202,7 @@ def custom(spell_name:str = typer.Argument(""),
                         domain_min=leyline_min,
                         domain_max=leyline_max,
                         resolution=leyline_resolution)
-    fig, ax = Glyph(data,
+    fig = Glyph(data,
                     leylines).draw(legend=show_legend)
     if save_file is not None:
         plt.savefig(save_file, transparent=True, dpi='figure')

@@ -8,11 +8,11 @@ Created on Sat Mar 14 16:07:36 2026
 from threading import Thread
 
 import typer
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 app = typer.Typer(no_args_is_help=True)
 
-from glyphloom.generation.draw import Glyph
+# from glyphloom.generation.draw import Glyph
 from glyphloom.cli.commands import (fe)
 
 app.add_typer(fe.app, name='5e')
@@ -30,6 +30,10 @@ def char(character_series: str = typer.Argument("The quick brown fox jumped over
                                                  '--characters',
                                                  help='Sentence or phrase you want represented, if using spaces wrap in double quotes "Hello World!"'),
         title: bool = typer.Option(True, '-t', '--hide-title', help="Flag to suppress the figure title")):
+    
+    
+    from glyphloom.generation.draw import Glyph
+    import matplotlib.pyplot as plt
     
     done = {"done": False}
     t = Thread(target=wait_for_input, args=(done,), daemon=True)
