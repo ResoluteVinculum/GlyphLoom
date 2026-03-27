@@ -38,7 +38,6 @@ def char(character_series: str = typer.Argument("The quick brown fox jumped over
     series = character_series or character_series_opt
     fig = Glyph.character_series(series=series,
                                  title=title)
-    fig.show()
     
     while not done['done'] and plt.fignum_exists(fig.number):
         plt.pause(0.1)

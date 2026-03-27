@@ -564,7 +564,7 @@ class Leylines:
             for diff, coords in enumerate(order_array):
                 plt.plot(*coords, color=cmap.colors[order])
         
-        plt.plot(*self.founts, 'bo')
+        plt.plot(*self.founts[:,1:], 'bo')
         plt.plot(*self.founts[:,0], 'ro')
         
 

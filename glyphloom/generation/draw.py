@@ -6,6 +6,7 @@ Created on Sun Mar 15 14:23:40 2026
 """
 import typing
 
+
 import matplotlib
 try:
     matplotlib.use('TkAgg')
@@ -41,8 +42,9 @@ class Glyph:
              title_kwargs: dict = {}, 
              legend: bool = False, 
              legend_kwargs: dict = {}, 
-             ax:plt.Axes = None) -> None:
-        # TODO: Add thematic colors
+             ax = None) -> None:
+        # TODO: Add thematic colors        
+        
         if not ax:
             fig = plt.figure(constrained_layout=True)
             ax = fig.add_subplot(111)
@@ -109,6 +111,7 @@ class Glyph:
                          options:typing.Iterable[str] = list("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoqprstuvwxyz.!?,;:\"'"),
                          leyline_expression:str|tuple[str] = 'non-centre-circle',
                          title:bool = True) -> None:
+        
         figure, axes = plt.subplots(nrows=1,ncols=len(series.split()),
                                     figsize=(max(1.5*len(series.split()),5), 2))
         if title:
@@ -138,7 +141,7 @@ class Glyph:
                     break
                 except IndexError:
                     points += 1
-                    
+        plt.show()
         return figure
                     
 if __name__ == '__main__':
